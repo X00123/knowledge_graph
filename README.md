@@ -1,2 +1,6 @@
 # knowledge_graph
-project for homework
+
+# 1. 项目说明
+# 2. 代码结构
+# 3. 使用方式
+
