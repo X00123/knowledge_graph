@@ -1,4 +1,4 @@
-# Agricultural Knowledge Graph
+# Movie Knowledge Graph
 
 ## 项目介绍：
 
@@ -26,15 +26,10 @@
         │   ├── __init__.pyc
         │   ├── detail_view.py
         │   ├── index_view.py
-        │   ├── index_view.pyc
         │   ├── relation_view.py
-        │   ├── relation_view.pyc
         │   ├── settings.py
-        │   ├── settings.pyc
         │   ├── urls.py
-        │   ├── urls.pyc
         │   ├── wsgi.py
-        │   └── wsgi.pyc
         ├── static   //网站静态资源
         │   ├── css
         │   │   └── jquery-ui-1.10.4.min.css
@@ -51,7 +46,6 @@
         │   └── index.html
         └── toolkit  //工具集，数据库连接，数据分析，分词
             ├── __init__.py
-            ├── __init__.pyc
             ├── pre_load.py
             └── pre_load.pyc
 
@@ -61,8 +55,8 @@
 
 ## 数据资源获取
 
-- wikipedia 
-- 互动百科
+- wikipedia电影词条
+- 互动百科 电影电视小说词条
 
 
 ## 项目配置
