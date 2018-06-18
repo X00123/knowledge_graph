@@ -13,9 +13,9 @@ def search_entity(request):
 	#根据传入的实体名称搜索出关系
 	if(request.GET):
 		entity = request.GET['user_text']
-		entity = "The"
+		entity = "Tom Hanks"
 		#连接数据库
-		entityRelation = neo_con.get_search(entity)
+		entityRelation = neo_con.matchItembyTitle(entity)
 		# if len(entityRelation) == 0:
 		# 	#若数据库中无法找到该实体，则返回数据库中无该实体
 		# 	ctx= {'title' : '<h1>数据库中暂未添加该实体</h1>'}

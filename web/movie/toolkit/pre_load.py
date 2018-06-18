@@ -8,5 +8,5 @@ sys.path.append("..")
 from model.neo_models import Neo4j 
 
 neo_con = Neo4j()   #预加载neo4j
-neo_con.get_db()
+neo_con.connectDB()
 print('neo4j connected!')
