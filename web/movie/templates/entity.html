@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block mainbody %}
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="/static/js/echarts.common.min.js"></script>   
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+</head>
+
+<div class="container">
+
+            {% if ctx %}
+               <div id="ttt">  </div>
+                <div class="panel panel-default">
+                    <header class ="panel-heading">
+                        <div class = "panel-body">
+                            <h2>数据库中暂未添加该实体</h2>
+                        </div>
+                    </header>
+                </div>
+
+                <script type="text/javascript">
+                    
+                   var ctx = [ {{ ctx|safe }} ] ;
+                   var doc = document.getElementById("ttt");
+                   console.log("===============" + ctx);
+                   doc.innerHTML = "" + ctx;
+
+                </script>
+            {% endif %}
+</div>
+
+{% endblock %}
