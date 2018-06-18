@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import wikipedia as wiki
 
 #基本信息

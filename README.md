@@ -70,8 +70,8 @@
 **系统需要安装：**
 
 - django     ---web框架
-- neo4j       ---图数据
-- py2neo    ---python连接neo4j的工具
+- neo4j      ---图数据库
+- py2neo     ---python连接neo4j的工具
 
 **项目部署：**
 
