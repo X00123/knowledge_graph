@@ -1,7 +1,5 @@
 # Agricultural Knowledge Graph
 
-项目demo：http://ecnukg.vicp.io
-
 ## 项目介绍：
 
 本项目是为北航知识工程大作业。主要展示了由影视及相关出版物的数据构建的知识图谱。
