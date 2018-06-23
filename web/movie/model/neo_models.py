@@ -23,12 +23,12 @@ class Neo4j():
 
     def getPersonRelationsByTitle(self,value):
         db = self.graph
-        answer = db.run('MATCH (n1:Person {name:"'+ value +'"})- [rel] -> (n2) RETURN n1, Type(rel),n2').data()
+        answer = db.run('MATCH (p:Person {name:"'+ value +'"})- [rel] -> (pm) RETURN p, Type(rel) as rel, pm').data()
         return answer
 
     def getMovieRelationsByTitle(self,value):
         db = self.graph
-        answer = db.run('MATCH (n1:Movie {title:"'+ value +'"})<- [rel] - (n2) RETURN n1, Type(rel),n2').data()
+        answer = db.run('MATCH (m:Movie {title:"'+ value +'"})<- [rel] - (mp) RETURN m, Type(rel) as rel, mp').data()
         return answer
 
 

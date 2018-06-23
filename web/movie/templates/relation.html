@@ -25,33 +25,51 @@
 
 <div id="noresult-panel" style="display:none;">  
 
+<h1> 没有找到该实体对应的关系图 </h1>
 </div>
 
- {% if ctx %}
+<div id="graph" style="display:none; height:400px;">  </div>
 
-  <div id="graph" style="height:400px;">  </div>
+
+ {% if ctx %}
 
   <script src="/static/js/echarts.js"></script>
   <script type="text/javascript">
 
     var ctx =  {{ ctx|safe }} ;
+    var nodes = [];
+    var links = [];
+     
+    nodes.push( {category:0, name:ctx.title, value : 10, label: ctx.title} );
+
     if(ctx.code == 0){
         var result = JSON.parse(ctx.result);
-        if(result.length > 0){
-            console.log(result);
+
+        for(var i=0; i<result.length; ++i){
+           var item = result[i];
+           if(item.p){
+               nodes.push( {category:1, name:item.pm.title, value : Math.floor(Math.random()*10+1), label: item.pm.title} );
+               links.push( {source :item.pm.title, target :ctx.title, weight : 1, name:item.rel});
+           }
+           else if(item.m){
+               nodes.push( {category:1, name:item.mp.name, value : Math.floor(Math.random()*10+1), label: item.mp.name} );
+               links.push( {source :item.mp.name, target :ctx.title, weight : 1, name:item.rel});
+           }
         }
+         
+        $("#graph").show();
     }
     else{
-        console.log(ctx.result);
+       $("#noresult-panel").show();
     }
 
 
-        require.config({
+    require.config({
             paths: {
                 echarts: '/static/js/'
             }
         });
-        require(
+    require(
             [
                 'echarts',
                 'echarts/chart/force'   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
@@ -60,7 +78,7 @@
                 var myChart = ec.init(document.getElementById('graph'));
                 var option =  {
     title : {
-        text: '人物关系：乔布斯',
+        text: '电影关系:'+ ctx.title,
         subtext: '北航软件学院',
         x:'right',
         y:'bottom'
@@ -79,22 +97,19 @@
     },
     legend: {
         x: 'left',
-        data:['家人','朋友']
+        data:['演员','电影']
     },
     series : [
         {
             type:'force',
-            name : "人物关系",
+            name : "关系",
             ribbonType: false,
             categories : [
                 {
-                    name: '人物'
+                    name: '电影'
                 },
                 {
-                    name: '家人'
-                },
-                {
-                    name:'朋友'
+                    name: '演员'
                 }
             ],
             itemStyle: {
@@ -131,39 +146,8 @@
             gravity: 1.1,
             scaling: 1.1,
             roam: 'move',
-            nodes:[
-                {category:0, name: '乔布斯', value : 10, label: '乔布斯\n（主要）'},
-                {category:1, name: '丽萨-乔布斯',value : 2},
-                {category:1, name: '保罗-乔布斯',value : 3},
-                {category:1, name: '克拉拉-乔布斯',value : 3},
-                {category:1, name: '劳伦-鲍威尔',value : 7},
-                {category:2, name: '史蒂夫-沃兹尼艾克',value : 5},
-                {category:2, name: '奥巴马',value : 8},
-                {category:2, name: '比尔-盖茨',value : 9},
-                {category:2, name: '乔纳森-艾夫',value : 4},
-                {category:2, name: '蒂姆-库克',value : 4},
-                {category:2, name: '龙-韦恩',value : 1},
-            ],
-            links : [
-                {source : '丽萨-乔布斯', target : '乔布斯', weight : 1, name: '女儿'},
-                {source : '保罗-乔布斯', target : '乔布斯', weight : 2, name: '父亲'},
-                {source : '克拉拉-乔布斯', target : '乔布斯', weight : 1, name: '母亲'},
-                {source : '劳伦-鲍威尔', target : '乔布斯', weight : 2},
-                {source : '史蒂夫-沃兹尼艾克', target : '乔布斯', weight : 3, name: '合伙人'},
-                {source : '奥巴马', target : '乔布斯', weight : 1},
-                {source : '比尔-盖茨', target : '乔布斯', weight : 6, name: '竞争对手'},
-                {source : '乔纳森-艾夫', target : '乔布斯', weight : 1, name: '爱将'},
-                {source : '蒂姆-库克', target : '乔布斯', weight : 1},
-                {source : '龙-韦恩', target : '乔布斯', weight : 1},
-                {source : '克拉拉-乔布斯', target : '保罗-乔布斯', weight : 1},
-                {source : '奥巴马', target : '保罗-乔布斯', weight : 1},
-                {source : '奥巴马', target : '克拉拉-乔布斯', weight : 1},
-                {source : '奥巴马', target : '劳伦-鲍威尔', weight : 1},
-                {source : '奥巴马', target : '史蒂夫-沃兹尼艾克', weight : 1},
-                {source : '比尔-盖茨', target : '奥巴马', weight : 6},
-                {source : '比尔-盖茨', target : '克拉拉-乔布斯', weight : 1},
-                {source : '蒂姆-库克', target : '奥巴马', weight : 1}
-            ]
+            nodes: nodes,
+            links :links
         }
     ]
 };
@@ -194,7 +178,6 @@ myChart.on(ecConfig.EVENT.FORCE_LAYOUT_END, function () {
         );
     </script>
 
-</div>
  {% endif %}
 
 {% endblock %}
