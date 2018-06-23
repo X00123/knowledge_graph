@@ -8,22 +8,22 @@ import os
 
 import json
 
-def search_relation(request):
+def search_entity(request):
 	if(request.GET):
 		
 		entity = request.GET['user_text']
-		entityRelation1 = neo_con.getPersonRelationsByTitle(entity)
-		entityRelation2 = neo_con.getMovieRelationsByTitle(entity)
+		entityRelation1 = neo_con.getPersonInfoByTitle(entity)
+		entityRelation2 = neo_con.getMovieInfoByTitle(entity)
 
 		entityRelation = entityRelation1 + entityRelation2
 		
 		if (len(entityRelation) > 0):
 			ctx= {'code' : 0,  'title':entity, 'result' : json.dumps(entityRelation,ensure_ascii=False) }
-			return render(request,'relation.html',{'ctx':ctx})
+			return render(request,'entity.html',{'ctx':ctx})
 	
 		else: 
 			ctx= {'code' : 400, 'title':entity, 'result' : '<h1>数据库中暂未添加该实体'+ entity +'</h1>' }
-			return render(request,'relation.html',{'ctx':ctx})
+			return render(request,'entity.html',{'ctx':ctx})
 
 
-	return render(request,"relation.html",{})
+	return render(request,"entity.html",{})

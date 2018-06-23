@@ -27,7 +27,7 @@ a, a:hover, a:focus {
     outline: 0;
 }
 
-input {height: 30px; font-size: 18px;}
+input {height: 26px; font-size: 18px;}
 input:focus, textarea:focus { outline: none; }
 
 

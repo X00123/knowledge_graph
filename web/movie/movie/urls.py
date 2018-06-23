@@ -22,10 +22,10 @@ Including another URLconf
 
 
 from django.conf.urls import url 
-from . import index_view, relation_view
+from . import index_view, entity_view, relation_view
 
 urlpatterns = [
     url(r'^$', index_view.index),
-    url(r'^search_entity',relation_view.search_entity)
-   # url(r'^search_relation',relation_view.search_relation)
+    url(r'^search_entity', entity_view.search_entity), 
+    url(r'^search_relation', relation_view.search_relation)
 ]
