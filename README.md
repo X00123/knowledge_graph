@@ -103,4 +103,18 @@ MATCH (n1:Movie {title:"The Matrix"})<- [rel] - (n2) RETURN n1, Type(rel),n2
 
 ## 项目使用
 
-1. waiting for upload!!
+### 实体识别+实体分类
+
+
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/1.png?raw=true)
+
+
+### 实体查询
+
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/2.png?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/3.png?raw=true)
+
+### 关系查询
+
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/4.png?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/5.png?raw=true)
