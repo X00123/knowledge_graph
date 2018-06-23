@@ -61,27 +61,22 @@
 ## Neo4j数据组织
 
 ```
-MATCH (p {name: "Tom Hanks"}) RETURN p
+//获得演员实体信息
+MATCH (p {name: "Tom Hanks"}) RETURN p 
 
+//获得电影实体信息
 MATCH (p {title: "The Matrix"}) RETURN p
 
-MATCH (tom:Person {name: "Tom Hanks"})-[:ACTED_IN]->(tomHanksMovies) RETURN tom,tomHanksMovies
-
-
-MATCH (cloudAtlas {title: "Cloud Atlas"})<-[:DIRECTED]-(directors) RETURN directors
-
-
-MATCH (people:Person)-[relatedTo]-(:Movie {title: "Cloud Atlas"}) RETURN people, Type(relatedTo), relatedTo
-
-
+//获得实体间关系最短路径
 MATCH p=shortestPath(
   (bacon:Person {name:"Kevin Bacon"})-[*]-(meg:Person {name:"Meg Ryan"})
 )
 RETURN p
 
-
+//获得演员的关系信息
 MATCH (n1:Person {name:"Tom Hanks"})- [rel] -> (n2) RETURN n1, Type(rel),n2
 
+//获得电影的关系信息
 MATCH (n1:Movie {title:"The Matrix"})<- [rel] - (n2) RETURN n1, Type(rel),n2
 ```
 
