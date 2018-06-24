@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block mainbody %}
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+
+<div class="container">
+
+
+  <div class="panel">      
+            <div class = "panel-body">
+                <!--搜索框-->
+                <form method = "get" id = 'searchRelationForm'>
+                        <div>
+                            <input type="text" id = "user_text" name = "user_text" class="form-control" placeholder="输入查询名称">
+
+                            <span class="btn btn-primary input-group-addon" type="button" id="relationSearchButton" style="background-color:#b3c2bf; padding:6px 38px" onclick="document.getElementById('searchRelationForm').submit();">查询</span>
+                         </div>
+                </form>
+            </div>
+  </div>
+  
+
+<div id="noresult-panel" style="display:none;">  
+
+<h1> 没有找到相关推荐 </h1>
+</div>
+
+
+
+<div id="recommend-list" style="display:none;">
+  <div>相关的推荐</div>
+   <ul id="recommend-ul">
+   </ul> 
+</div>
+
+
+ {% if ctx %}
+  <script type="text/javascript">
+
+    var ctx =  {{ ctx|safe }} ;
+    var htmlResult = [];
+
+    if(ctx.code == 0){
+        var result = JSON.parse(ctx.result);
+
+        for(var i=0; i<result.length; ++i){
+           var item = result[i];
+           var rec = item.prec ? item.prec : item.mrec;
+           // console.log(rec);
+           if(rec){
+                if(rec.name){
+                     htmlResult.push( '<li><span>演员:'+rec.name+'</span> <a href="/search_entity?user_text='+rec.name +'"> 详细信息</a></li>' );
+                }
+                else if(rec.title){
+                    htmlResult.push( '<li><span>电影:'+rec.title+'</span> <a href="/search_entity?user_text='+rec.title +'"> 详细信息</a></li>' );
+                }
+           }
+        }
+
+        $("#recommend-ul").html(htmlResult.join(""));
+        $("#recommend-list").show();
+    }
+    else{
+       $("#noresult-panel").show();
+    }
+
+  </script>
+
+ {% endif %}
+
+{% endblock %}

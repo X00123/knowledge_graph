@@ -31,6 +31,16 @@ class Neo4j():
         answer = db.run('MATCH (m:Movie {title:"'+ value +'"})<- [rel] - (mp) RETURN m, Type(rel) as rel, mp').data()
         return answer
 
+    def getPersonRecommendByTitle(self,value):
+        db = self.graph
+        answer = db.run('MATCH (bacon:Person {name:"'+value+'"})-[*1..2]-(prec) RETURN DISTINCT prec').data()
+        return answer
+
+    def getMovieRecommendByTitle(self,value):
+        db = self.graph
+        answer = db.run('MATCH (bacon:Movie {title:"'+value+'"})-[*1..2]-(mrec) RETURN DISTINCT mrec').data()
+        return answer
+
 
 """
 
