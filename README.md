@@ -23,10 +23,10 @@
         │   ├── neo_models.py
         ├── movie       //业务控制层：网站业务
         │   ├── __init__.py
-        │   ├── __init__.pyc
-        │   ├── detail_view.py
         │   ├── index_view.py
+        │   ├── entity_view.py
         │   ├── relation_view.py
+        │   ├── recommend_view.py
         │   ├── settings.py
         │   ├── urls.py
         │   ├── wsgi.py
@@ -41,8 +41,9 @@
         ├── templates //视图层，网站页面模版
         │   ├── 404.html
         │   ├── base.html
-        │   ├── detail.html
         │   ├── entity.html
+        │   ├── recommend.html
+        │   ├── relation.html
         │   └── index.html
         └── toolkit  //工具集，数据库连接，数据分析，分词
             ├── __init__.py
@@ -78,6 +79,11 @@ MATCH (n1:Person {name:"Tom Hanks"})- [rel] -> (n2) RETURN n1, Type(rel),n2
 
 //获得电影的关系信息
 MATCH (n1:Movie {title:"The Matrix"})<- [rel] - (n2) RETURN n1, Type(rel),n2
+
+//获得电影或演员的相关推荐
+MATCH (bacon:Person {name:"Tom Hanks"})-[*1..2]-(prec) RETURN DISTINCT prec
+
+MATCH (bacon:Movie {title:"The Matrix"})-[*1..2]-(mrec) RETURN DISTINCT mrec
 ```
 
 ## 项目配置
