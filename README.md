@@ -112,15 +112,20 @@ MATCH (bacon:Movie {title:"The Matrix"})-[*1..2]-(mrec) RETURN DISTINCT mrec
 ### 实体识别+实体分类
 
 
-![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/1.png?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/1.jpg?raw=true)
 
 
 ### 实体查询
 
-![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/2.png?raw=true)
-![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/3.png?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/2.jpg?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/3.jpg?raw=true)
 
 ### 关系查询
 
-![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/4.png?raw=true)
-![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/5.png?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/4.jpg?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/5.jpg?raw=true)
+
+### 相关推荐
+
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/6.jpg?raw=true)
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/7.jpg?raw=true)
