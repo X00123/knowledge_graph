@@ -61,6 +61,10 @@
 
 ## Neo4j数据组织
 
+**neo4j实体关系图（部分）**
+![image](https://github.com/X00123/knowledge_graph/blob/master/Doc/0.jpg?raw=true)
+
+**neo4j查询语句**
 ```
 //获得演员实体信息
 MATCH (p {name: "Tom Hanks"}) RETURN p 
